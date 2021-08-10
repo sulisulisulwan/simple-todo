@@ -2,7 +2,6 @@ const mysql = require('mysql2');
 const { dummyDb } = require('../db.js');
 
 
-
 //DUMMY MODELS
 
 /* expect todo object to be

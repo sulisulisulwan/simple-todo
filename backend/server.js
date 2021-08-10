@@ -1,7 +1,8 @@
 const express = require('express');
-const routes = require('./routes/routes.js')
+const todosRoutes = require('./routes/todosRoutes.js')
 const authRoutes = require('./routes/authRoutes.js')
 const port = 3000;
+const { dummyDb } = require('./db.js')
 
 const app = express();
 
@@ -9,10 +10,13 @@ app.use(express.static('./frontend/public'));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.use('/', routes)
-app.use('/todos', routes)
-app.use('/users/create', authRoutes)
-app.use('/users/validate', authRoutes)
+app.get('/db', (req, res, next) => {
+  console.log(dummyDb)
+  res.sendStatus(200)
+})
+
+app.use('/todos', todosRoutes)
+app.use('/user', authRoutes)
 
 
 app.listen(port, () => {

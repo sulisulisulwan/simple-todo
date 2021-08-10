@@ -1,12 +1,9 @@
 const express = require('express');
-const models = require('../models/models.js')
+const models = require('../models/todosModels.js')
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send('Hello!')
-})
 
-router.post('/todos', (req, res) => {
+router.post('/', (req, res, next) => {
   let todo = req.body
   models.insertTodo(todo)
     .then(_=> {
@@ -18,13 +15,13 @@ router.post('/todos', (req, res) => {
     })
 })
 
-router.get('/todos', (req, res) => {
+router.get('/', (req, res, next) => {
 
 })
-router.put('/todos', (req, res) => {
+router.put('/', (req, res, next) => {
 
 })
-router.delete('/todos', (req, res) => {
+router.delete('/', (req, res, next) => {
 
 })
 
