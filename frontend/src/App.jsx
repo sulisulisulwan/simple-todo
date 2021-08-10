@@ -7,17 +7,13 @@ const App = () => {
 
 
   const displayUsername = () => {
-    if (user === null) {
-      return 'Currently Signed Out';
-    } else {
-      return `Welcome ${username}!`
-    }
+
   }
 
   return (
     <main>
       <h1>A simple Todo List!</h1>
-      <p>{displayUsername}</p>
+      {username === null ? <p>Currently Signed Out</p> : <p>Welcome {username}!</p>}
     </main>
   )
 }
