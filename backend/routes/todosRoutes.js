@@ -16,13 +16,39 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-
+  let username = req.params.username
+  models.getTodos(username)
+    .then(todos => {
+      res.status(200).json(todos);
+    })
+    .catch(err => {
+      console.error(new Error(err));
+      res.status(500).json(err);
+    })
 })
+
 router.put('/', (req, res, next) => {
-
+  let todo = req.body
+  models.updateTodo(todo)
+    .then(_=> {
+      res.sendStatus(201)
+    })
+    .catch(err => {
+      console.error(new Error(err))
+      res.status(500).json(err)
+    })
 })
-router.delete('/', (req, res, next) => {
 
+router.delete('/', (req, res, next) => {
+  let todo = req.body
+  models.deleteTodo(todo)
+    .then(_=> {
+      res.sendStatus(201)
+    })
+    .catch(err => {
+      console.error(new Error(err))
+      res.status(500).json(err)
+    })
 })
 
 

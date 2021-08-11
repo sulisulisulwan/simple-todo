@@ -20,6 +20,7 @@ const createUser = (user) => {
       err = 'username already exists'
     } else {
       dummyDb.users[user.username] = user
+      dummyDb.users[user.username].todos = {};
     }
     err !== undefined ? rej(err) : res()
   })
@@ -29,7 +30,7 @@ const validateUser = (user) => {
   return new Promise((res, rej) => {
     let err;
     if (dummyDb.users[user.username]) {
-      if (dummyDb.users[username].pw !== user.pw) {
+      if (dummyDb.users[user.username].pw !== user.pw) {
         err = 'password is incorrect'
       }
     } else {

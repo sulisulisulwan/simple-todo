@@ -7,36 +7,37 @@ const { dummyDb } = require('../db.js');
 /* expect todo object to be
  {
    id: NUMBER
+   username: STRING
    text: STRING (the actual todo)
  }
 */
 
-const insertTodo = (todo) => {
+const createTodo = (todo) => {
   return new Promise((res, rej) => {
     let err;
-    db.todos[todo.id] = todo.text
+    dummyDb.users[todo.username][todo.id] = todo.text
     err ? rej(err) : res()
   })
 }
 
-const getTodos = (db) => {
+const getTodos = (username) => {
   return new Promise((res, rej) => {
     let err;
     let todosData = []
-    for (let todo in db.todos) {
+    for (let todo in dummyDb.users[todo.username]) {
       todosData.push({
         id: todo,
-        text: db.todos[todo]
+        text: dummyDb.users[todo.username].todos[todo].text
       });
     }
     err ? rej(err) : res(todosData)
   });
 }
 
-const updateTodo = (db, todo) => {
+const updateTodo = (todo) => {
   return new Promise((res, rej) => {
     let err;
-    db.todos[todo.id] = todo.text;
+    dummyDb.users[todo.username].todos[todo].text = todo.text;
     err ? rej() : res()
   })
 }
@@ -44,7 +45,7 @@ const updateTodo = (db, todo) => {
 const deleteTodo = () => {
   return new Promise ((res, rej) => {
     let err;
-    delete db.todos[todo.id];
+    delete dummyDb.users[todo.username].todos[todo];
     err ? rej() : res();
   })
 }
@@ -53,7 +54,7 @@ const deleteTodo = () => {
 
 
 module.exports = {
-  insertTodo,
+  createTodo,
   getTodos,
   updateTodo,
   deleteTodo

@@ -25,7 +25,8 @@ router.post('/validate', (req, res, next) => {
       res.sendStatus(201)
     })
     .catch(err => {
-      typeof err === string ? res.status(400).json(err) : res.sendStatus(500);
+      console.log(err)
+      typeof err === 'string' ? res.status(400).json(err) : res.sendStatus(500);
     })
 })
 
