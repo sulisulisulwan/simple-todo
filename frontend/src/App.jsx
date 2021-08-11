@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import SigninModal from './components/modals/SigninModal.jsx'
-import SignupModal from './components/modals/SignupModal.jsx'
-import LogInOut from './components/LogInOut.jsx'
+import SigninModal from './components/modals/SigninModal.jsx';
+import SignupModal from './components/modals/SignupModal.jsx';
+import LogInOut from './components/LogInOut.jsx';
+import TodoList from './components/TodoList.jsx';
 
 const App = () => {
   const [username, setUsername] = useState(null);
@@ -29,6 +30,13 @@ const App = () => {
         </div>
       </header>
       <main>
+        {currentUserData !== null ?
+          <TodoList
+            currentUserData={currentUserData}
+            setCurrentUserData={setCurrentUserData}
+          />
+          : null
+        }
       </main>
       <SigninModal
         isOpen={signinModalIsOpen}

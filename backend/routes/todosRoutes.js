@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/', (req, res, next) => {
   let todo = req.body
-  models.insertTodo(todo)
+  models.createTodo(todo)
     .then(_=> {
       res.sendStatus(201)
     })

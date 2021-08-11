@@ -15,10 +15,12 @@ const { dummyDb } = require('../db.js');
 const createTodo = (todo) => {
   return new Promise((res, rej) => {
     let err;
-    dummyDb.users[todo.username][todo.id] = {
+    dummyDb.todos[todo.username][todo.id] = {
       id: todo.id,
-      text: todo.text
+      text: todo.text,
+      isComplete: false
     }
+    console.log('here')
     err ? rej(err) : res()
   })
 }
@@ -37,7 +39,7 @@ const getTodos = (username) => {
 const updateTodo = (todo) => {
   return new Promise((res, rej) => {
     let err;
-    dummyDb.users[todo.username].todos[todo].text = todo.text;
+    dummyDb.todos[todo.username].todos[todo].text = todo.text;
     err ? rej() : res()
   })
 }
@@ -45,7 +47,7 @@ const updateTodo = (todo) => {
 const deleteTodo = () => {
   return new Promise ((res, rej) => {
     let err;
-    delete dummyDb.users[todo.username].todos[todo];
+    delete dummyDb.todos[todo.username].todos[todo];
     err ? rej() : res();
   })
 }
