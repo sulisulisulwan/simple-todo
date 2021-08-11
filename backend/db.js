@@ -13,6 +13,7 @@ const pool = mysql.createPool({
 
 const dummyDb = {
   users: {},
+  todos: {}
 }
 
 

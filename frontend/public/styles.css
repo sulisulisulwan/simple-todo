@@ -1,3 +1,10 @@
+html header {
+  display: grid;
+  grid-template-columns: [free-space] 10% [title] 30% [signin-signup-login-logout] 60%;
+}
+html header #signin-signup-login-logout {
+  text-align: right;
+}
 html .modal-overlay {
   position: fixed;
   top: 50%;

@@ -8,6 +8,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/create', (req, res, next) => {
   let user = req.body;
+
   models.createUser(user)
     .then(_=> {
       res.sendStatus(201);
@@ -20,6 +21,7 @@ router.post('/create', (req, res, next) => {
 
 router.post('/validate', (req, res, next) => {
   let user = req.body;
+
   models.validateUser(user)
     .then(_=> {
       res.sendStatus(201)

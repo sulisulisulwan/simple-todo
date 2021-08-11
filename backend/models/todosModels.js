@@ -15,7 +15,10 @@ const { dummyDb } = require('../db.js');
 const createTodo = (todo) => {
   return new Promise((res, rej) => {
     let err;
-    dummyDb.users[todo.username][todo.id] = todo.text
+    dummyDb.users[todo.username][todo.id] = {
+      id: todo.id,
+      text: todo.text
+    }
     err ? rej(err) : res()
   })
 }
@@ -23,12 +26,9 @@ const createTodo = (todo) => {
 const getTodos = (username) => {
   return new Promise((res, rej) => {
     let err;
-    let todosData = []
-    for (let todo in dummyDb.users[todo.username]) {
-      todosData.push({
-        id: todo,
-        text: dummyDb.users[todo.username].todos[todo].text
-      });
+    let todosData = {
+      username: username,
+      todos: dummyDb.todos[username]
     }
     err ? rej(err) : res(todosData)
   });

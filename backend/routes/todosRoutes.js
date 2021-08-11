@@ -16,7 +16,8 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  let username = req.params.username
+  let username = req.query.username
+
   models.getTodos(username)
     .then(todos => {
       res.status(200).json(todos);

@@ -20,7 +20,7 @@ const createUser = (user) => {
       err = 'username already exists'
     } else {
       dummyDb.users[user.username] = user
-      dummyDb.users[user.username].todos = {};
+      dummyDb.todos[user.username] = {}
     }
     err !== undefined ? rej(err) : res()
   })
@@ -36,6 +36,7 @@ const validateUser = (user) => {
     } else {
       err = 'username doesn\'t exist'
     }
+    console.log(dummyDb.users[user.username])
     err ? rej(err) : res();
   })
 }
