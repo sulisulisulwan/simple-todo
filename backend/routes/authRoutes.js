@@ -19,12 +19,11 @@ router.post('/create', (req, res, next) => {
     })
 })
 
-router.post('/validate', (req, res, next) => {
+router.post('/authorize', (req, res, next) => {
   let user = req.body;
-
   models.validateUser(user)
-    .then(_=> {
-      res.sendStatus(201)
+    .then(results=> {
+      res.status(201).json(results)
     })
     .catch(err => {
       console.log(err)

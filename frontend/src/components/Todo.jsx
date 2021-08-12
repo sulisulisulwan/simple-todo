@@ -2,7 +2,6 @@ import React from 'react';
 
 const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
   let {text, isComplete} = todo;
-  console.log('isComplete is', isComplete)
 
   const toggleComplete = (e) => {
     e.preventDefault()

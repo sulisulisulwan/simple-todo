@@ -1,48 +1,66 @@
 const mysql = require('mysql2');
-const { dummyDb } = require('../db.js');
+const { pool } = require('../db.js');
 
-
-
-//DUMMY MODELS
-/*
-  expect user to be:
-  {
-    username: STRING,
-    pw: STRING
-  }
-
-*/
 
 const createUser = (user) => {
-  return new Promise ((res, rej) => {
-    let err;
-    if (dummyDb.users[user.username]) {
-      err = 'username already exists'
-    } else {
-      dummyDb.users[user.username] = user
-      dummyDb.todos[user.username] = {}
-    }
-    err !== undefined ? rej(err) : res()
+  return new Promise ((resolve, reject) => {
+
+    let userID;
+    pool.getConnection()
+      .then(conn => {
+        let q = `SELECT * FROM Users WHERE username = "${user.username}";`
+        let resolution = conn.query(q)
+        return resolution
+      })
+      .then(result => {
+        if (result[0].length !== 0) {
+          throw new Error('username already exists')
+        }
+        return pool.getConnection()
+      })
+      .then(conn => {
+
+        let q = `INSERT INTO Users (username, pw) VALUES ("${user.username}", "${user.pw}");`
+        let resolution = conn.query(q)
+        resolve(resolution);
+      })
+      .catch(err => {
+        console.error(err)
+        reject(err)
+      })
+
   })
 }
+
 
 const validateUser = (user) => {
-  return new Promise((res, rej) => {
-    let err;
-    if (dummyDb.users[user.username]) {
-      if (dummyDb.users[user.username].pw !== user.pw) {
-        err = 'password is incorrect'
-      }
-    } else {
-      err = 'username doesn\'t exist'
-    }
-    console.log(dummyDb.users[user.username])
-    err ? rej(err) : res();
+
+  return new Promise ((resolve, reject) => {
+
+    pool.getConnection()
+      .then(conn => {
+        let q = `SELECT * FROM Users WHERE username = "${user.username}";`
+        return conn.query(q)
+      })
+      .then(result => {
+        if (result[0].length) {
+          if (result[0][0].pw !== user.pw) {
+            throw new Error('password is incorrect')
+          } else {
+            resolve(result[0][0])
+          }
+        } else {
+          throw new Error('username doesn\'t exist')
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        reject(err)
+      })
+
   })
 }
 
-
-//REAL MODELS
 
 module.exports = {
   createUser,

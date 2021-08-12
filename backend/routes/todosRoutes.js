@@ -16,11 +16,12 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
+  let userID = req.query.userID
   let username = req.query.username
 
-  models.getTodos(username)
-    .then(todos => {
-      res.status(200).json(todos);
+  models.getTodos(userID, username)
+    .then(todosData => {
+      res.status(200).json(todosData);
     })
     .catch(err => {
       console.error(new Error(err));

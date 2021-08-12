@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
-const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setUserData} ) => {
+const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCurrentUserData} ) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -23,14 +23,22 @@ const verifyUserHandler = (e) => {
     username: username,
     pw: password
   }
-
-  axios.post('/user/validate', body)
-  .then(_=> {
-    return axios.get(`/todos?username=${username}`)
+  return axios.post('/user/authorize', body)
+  .then(result => {
+    let userID = result.data.userID
+    return axios.get(`/todos?userID=${userID}&username=${username}`)
   })
   .then(result => {
+    let todos = {}
+    for (let todoID in result.todos) {
+      todos[todoID] = result.todos[todoID]
+    }
     setSigninModalIsOpen(false);
-    setUserData(result.data)
+    setCurrentUserData({
+      userID: result.data.userID,
+      username: username,
+      todos: todos
+    })
   })
   .catch(err => {
     console.error(new Error(err));

@@ -41,6 +41,7 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
     }
     axios.post('/todos', todo)
       .then(_=> {
+        setTodoInputField('');
         return axios.get(`/todos?username=${username}`)
       })
       .then(result => {
@@ -48,7 +49,19 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
       })
   }
 
-  console.log('rerendering')
+  const handleClearComplete = () => {
+    //go into database and delete all completed tasks
+    axios.delete(`/todos?username=${username}`)
+      .then(_=> {
+        return axios.get(`/todos?username=${username}`)
+      })
+      .then(results => {
+        setCurrentUserData(results.data);
+      })
+      .catch(err => {
+        console.error(new Error(err))
+      })
+  }
 
   return (
     <div id="todo-list">
@@ -59,6 +72,7 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
         </label>
         <input type="submit" value="Add Todo"></input>
       </form>
+      <button id="clear-complete" type="button" onClick={handleClearComplete}>Clear Complete</button>
       Todo List:
       {todos.length ?
         <table>
