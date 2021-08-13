@@ -8,7 +8,6 @@ router.get('/', (req, res, next) => {
 
 router.post('/create', (req, res, next) => {
   let user = req.body;
-
   models.createUser(user)
     .then(_=> {
       res.sendStatus(201);

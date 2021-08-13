@@ -1,18 +1,12 @@
 const mysql = require('mysql2');
 const { pool } = require('../db.js');
 
-
 const createTodo = (todo) => {
 
   return new Promise ((resolve, reject) => {
-
-    let q = `INSERT INTO Todos (userID, todoText, isComplete, userID) VALUES (?, ?, ?, ?);`
-    let v = `${todo.userID}, ${todo.todoText}, false, ${userID}`;
-    pool.getConnection()
-      .then(conn => {
-        const resolution = conn.query(q, v)
-        return resolution
-      })
+    let q = `INSERT INTO Todos (userID, todoText, isComplete, username) VALUES (?, ?, ?, ?);`
+    let v = [todo.userID, todo.todoText, false, todo.username]
+    pool.query(q, v)
       .then(_=> {
         resolve();
       })
@@ -27,21 +21,16 @@ const createTodo = (todo) => {
 
 const getTodos = (userID, username) => {
   return new Promise ((resolve, reject) => {
-
     let q = `SELECT * FROM Todos WHERE userID = ${Number(userID)};`
-    pool.getConnection()
-      .then(conn => {
-        const resolution = conn.query(q);
-        return resolution
-      })
+    return pool.query(q)
       .then(data => {
         let todos = {}
 
         data[0].forEach(todo => {
           todos[todo.todoID] = {
-            todoId: todo.todoID,
+            todoID: todo.todoID,
             text: todo.todoText,
-            isComplete: todo.isComplete
+            isComplete: todo.isComplete === 1 ? true : false
           }
         })
 
@@ -59,34 +48,11 @@ const getTodos = (userID, username) => {
   })
 }
 
-const updateTodo = (todo) => {
+const updateTodo = (todoID, prop) => {
   return new Promise ((resolve, reject) => {
-
-
-    pool.getConnection()
-      .then(conn => {
-        //todo will be an object of changed todo:
-        /*
-          {
-            userID: INT
-            todo: {
-              someProperty: UPDATED VALUE
-              anotherProperty: UPDATED VALUE
-            }
-          }
-        */
-      let updatedValues = '';
-      for (let prop in todo) {
-        let value = typeof prop === 'boolean' ? `${prop} = ${todo[prop]}, ` : `${prop} = "${todo[prop]}", `
-        updatedValues += value
-      }
-      updatedValues.substring(0, updatedValues.length - 1);
-      let userID = todo.userID
-      let q = `UPDATE Todos SET ${updatedValues}WHERE userID = ${userID};`
-
-      let resolution = conn.query(q)
-      return resolution;
-      })
+    let updatedValue = typeof prop[1] === 'boolean' ? `${prop[0]} = ${prop[1]}` : `${prop[0]} = "${prop[1]}"`
+    let q = `UPDATE Todos SET ${updatedValue} WHERE todoID = ${todoID};`
+    pool.query(q)
       .then(_=> {
         resolve()
       })
@@ -98,15 +64,10 @@ const updateTodo = (todo) => {
   })
 }
 
-const deleteTodo = (todoID) => {
+const deleteTodo = (userID) => {
   return new Promise((resolve, reject) => {
-
-    pool.getConnection()
-      .then(conn => {
-        let q = `DELETE FROM Todos WHERE todoID = ${todoID};`
-        let resolution = conn.query(q)
-        return resolution;
-      })
+    let q = `DELETE FROM Todos WHERE userID = ${userID} AND isComplete = true;`
+    pool.query(q)
       .then(_=>{
         resolve();
       })

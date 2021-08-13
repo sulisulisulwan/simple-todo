@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/', (req, res, next) => {
   let todo = req.body
   models.createTodo(todo)
-    .then(_=> {
+  .then(_=> {
       res.sendStatus(201)
     })
     .catch(err => {
@@ -18,9 +18,8 @@ router.post('/', (req, res, next) => {
 router.get('/', (req, res, next) => {
   let userID = req.query.userID
   let username = req.query.username
-
   models.getTodos(userID, username)
-    .then(todosData => {
+  .then(todosData => {
       res.status(200).json(todosData);
     })
     .catch(err => {
@@ -30,9 +29,10 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/', (req, res, next) => {
-  let todo = req.body
-  models.updateTodo(todo)
-    .then(_=> {
+  let [todoID, prop]  = Object.entries(req.body)
+
+  models.updateTodo(todoID[1], prop)
+  .then(_=> {
       res.sendStatus(201)
     })
     .catch(err => {
@@ -42,9 +42,9 @@ router.put('/', (req, res, next) => {
 })
 
 router.delete('/', (req, res, next) => {
-  let todo = req.body
-  models.deleteTodo(todo)
-    .then(_=> {
+  let { userID } = req.body
+  models.deleteTodo(Number(userID))
+  .then(_=> {
       res.sendStatus(201)
     })
     .catch(err => {

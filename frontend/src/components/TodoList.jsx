@@ -4,7 +4,6 @@ import Todo from './Todo.jsx'
 import axios from 'axios';
 
 const TodoList = ({ currentUserData, setCurrentUserData }) => {
-
   let todos = [];
   const [todoInputField, setTodoInputField] = useState('')
 
@@ -15,53 +14,50 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
     }
   }
 
+
   const handleTodoInputChange = (e) => {
     setTodoInputField(e.target.value)
   }
 
-
-  const createRandomId = () => {
-    let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-    let id = ''
-    for (let i = 0; i < 11; i++) {
-      id += Math.floor(Math.random() * 10).toString()
-      id += letters[Math.floor(Math.random() * 52)]
-    }
-    return id;
-  }
-
   const handleCreateTodo = (e) => {
     e.preventDefault();
-    let username = currentUserData.username;
-    let id = createRandomId();
+    let { userID, username } = currentUserData;
     let todo = {
-      id: id,
+      userID: userID,
       username: username,
-      text: todoInputField
+      todoText: todoInputField,
+      isComplete: false
     }
     axios.post('/todos', todo)
       .then(_=> {
         setTodoInputField('');
-        return axios.get(`/todos?username=${username}`)
+        return axios.get(`/todos?username=${username}&userID=${userID}`)
       })
       .then(result => {
         setCurrentUserData(result.data)
       })
+      .catch(err => {
+        console.error(err)
+      })
   }
 
   const handleClearComplete = () => {
-    //go into database and delete all completed tasks
-    axios.delete(`/todos?username=${username}`)
-      .then(_=> {
-        return axios.get(`/todos?username=${username}`)
-      })
-      .then(results => {
-        setCurrentUserData(results.data);
-      })
+    let newData = {}
+    newData.userID = currentUserData.userID
+    newData.username = currentUserData.username
+    newData.todos = currentUserData.todos
+    for (let todo in newData.todos) {
+      if (newData.todos[todo].isComplete) {
+        delete newData.todos[todo]
+      }
+    }
+    setCurrentUserData(newData);
+    axios.delete('/todos', { data: { userID: currentUserData.userID} })
       .catch(err => {
         console.error(new Error(err))
       })
   }
+
 
   return (
     <div id="todo-list">

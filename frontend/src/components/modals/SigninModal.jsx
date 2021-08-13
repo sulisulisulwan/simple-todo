@@ -17,33 +17,34 @@ const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
     }
   }
 
-const verifyUserHandler = (e) => {
-  e.preventDefault();
-  let body = {
-    username: username,
-    pw: password
-  }
-  return axios.post('/user/authorize', body)
-  .then(result => {
-    let userID = result.data.userID
-    return axios.get(`/todos?userID=${userID}&username=${username}`)
-  })
-  .then(result => {
-    let todos = {}
-    for (let todoID in result.todos) {
-      todos[todoID] = result.todos[todoID]
-    }
-    setSigninModalIsOpen(false);
-    setCurrentUserData({
-      userID: result.data.userID,
+  const verifyUserHandler = (e) => {
+    e.preventDefault();
+    let body = {
       username: username,
-      todos: todos
+      pw: password
+    }
+    return axios.post('/user/authorize', body)
+    .then(result => {
+      let userID = result.data.userID
+      return axios.get(`/todos?userID=${userID}&username=${username}`)
     })
-  })
-  .catch(err => {
-    console.error(new Error(err));
-  })
-}
+    .then(result => {
+      let todos = {}
+      console.log('result is', result)
+      for (let todoID in result.data.todos) {
+        todos[todoID] = result.data.todos[todoID]
+      }
+      setSigninModalIsOpen(false);
+      setCurrentUserData({
+        userID: result.data.userID,
+        username: username,
+        todos: todos
+      })
+    })
+    .catch(err => {
+      console.error(new Error(err));
+    })
+  }
 
   return isOpen ?
       ReactDom.createPortal(

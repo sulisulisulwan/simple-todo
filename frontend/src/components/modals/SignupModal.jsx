@@ -17,12 +17,12 @@ const SignupModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
     axios.post('/user/create', body)
       .then(_=> {
         return axios.post('/user/authorize', body)
+      })
       .then(result => {
         let userID = result.data.userID
         return axios.get(`/todos?userID=${userID}&username=${chosenUsername}`)
       })
       .then(result => {
-        console.log(result)
         let todos = {}
         for (let todoID in result.data.todos) {
           todos[todoID] = result.data.todos[todoID]
@@ -33,12 +33,6 @@ const SignupModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
           username: chosenUsername,
           todos: todos
         })
-      })
-
-
-
-        setSignupModalIsOpen(false);
-
       })
       .catch(err => {
         console.error(new Error(err));
