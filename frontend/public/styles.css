@@ -23,5 +23,27 @@ html .modal-wrapper {
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 }
+html main #todo-list-wrapper {
+  text-align: center;
+}
+html main #todo-list-wrapper #nothing-to-do {
+  margin-top: 20px;
+}
+html main #todo-list-wrapper #todo-list {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+html main #todo-list-wrapper #todo-list .todo {
+  display: grid;
+  overflow-wrap: break-word;
+  grid-template-columns: [todo-text] 250px [todo-is-complete] 30px;
+}
+html main #todo-list-wrapper #todo-list .todo .todo-text {
+  text-align: left;
+}
+html main #todo-list-wrapper #todo-list .todo .todo-is-complete {
+  text-align: right;
+}
 
 /*# sourceMappingURL=styles.css.map */

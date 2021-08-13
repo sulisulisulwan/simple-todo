@@ -28,11 +28,11 @@ const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
   }
 
   return (
-    <tr>
-      <td>
+    <tr className="todo">
+      <td className="todo-text">
         {text}
       </td>
-      <td id={`#-${todo.todoID}`} onClick={toggleComplete}>
+      <td id={`#-${todo.todoID}`} className="todo-is-complete" onClick={toggleComplete}>
         {isComplete ? '[X]' : '[ ]'}
       </td>
     </tr>

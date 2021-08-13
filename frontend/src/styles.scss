@@ -28,4 +28,29 @@ html {
     z-index: 1000;
 
   }
+  main {
+    #todo-list-wrapper {
+      text-align: center;
+      #nothing-to-do {
+        margin-top: 20px;
+      }
+      #todo-list {
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        .todo {
+          display: grid;
+          overflow-wrap: break-word;
+          grid-template-columns: [todo-text] 250px [todo-is-complete] 30px;
+
+          .todo-text {
+            text-align: left;
+          }
+          .todo-is-complete {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
 }

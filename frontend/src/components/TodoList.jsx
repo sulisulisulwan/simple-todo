@@ -60,18 +60,17 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
 
 
   return (
-    <div id="todo-list">
-      <form onSubmit={handleCreateTodo}>
-        <label>
+    <div id="todo-list-wrapper">
+      <form id="todo-list-actions" onSubmit={handleCreateTodo}>
+        <label id="add-todo-input-text-label">
           Write a Todo:
-          <input type="text" onChange={handleTodoInputChange}></input>
+          <input id="add-todo-input-text" type="text" onChange={handleTodoInputChange}></input>
         </label>
-        <input type="submit" value="Add Todo"></input>
+        <input id="add-todo-input-submit" type="submit" value="Add Todo"></input>
+        <button id="clear-complete-button" type="button" onClick={handleClearComplete}>Clear Complete</button>
       </form>
-      <button id="clear-complete" type="button" onClick={handleClearComplete}>Clear Complete</button>
-      Todo List:
       {todos.length ?
-        <table>
+        <table id="todo-list">
           <tbody>
             {todos.map((todo, i) =>
               <Todo
@@ -82,7 +81,7 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
               />)}
           </tbody>
         </table>
-          : <span>You have nothing to do</span>}
+          : <div id="nothing-to-do">You have nothing to do</div>}
 
     </div>
   )

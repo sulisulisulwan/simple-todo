@@ -30,7 +30,6 @@ const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
     })
     .then(result => {
       let todos = {}
-      console.log('result is', result)
       for (let todoID in result.data.todos) {
         todos[todoID] = result.data.todos[todoID]
       }
