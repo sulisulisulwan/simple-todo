@@ -1,12 +1,15 @@
+html {
+  font-family: "Josefin Sans", sans-serif;
+}
+html .sign-in-button {
+  cursor: pointer;
+}
+html .sign-up-button {
+  cursor: pointer;
+}
 html header {
   display: grid;
   grid-template-columns: [free-space] 10% [title] 30% [signin-signup-login-logout] 60%;
-}
-html header #sign-in-button {
-  cursor: pointer;
-}
-html header #sign-up-button {
-  cursor: pointer;
 }
 html header #signin-signup-login-logout {
   text-align: right;
@@ -52,8 +55,21 @@ html .modal-overlay {
   padding: 50px;
   z-index: 1000;
 }
-html .modal-close-button {
+html .modal-close-button-line {
   text-align: right;
+}
+html .modal-close-button-line .modal-close-button {
+  cursor: pointer;
+}
+html .form-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+html #already-a-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -51,11 +51,11 @@ const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
           <div id="sign-in-modal" className="modal-overlay">
             <div id="sign-in-close-button" className="modal-close-button-line"><span className="modal-close-button" onClick={() => setSigninModalIsOpen(false)}>X</span></div>
             <div id="sign-in-form">
-              New to SimpleTodo?  <span onClick={() => {
+              New to SimpleTodo?  <span className="sign-up-button" onClick={() => {
                 setSignupModalIsOpen(true)
                 setSigninModalIsOpen(false)
                 }}>Sign up!</span>
-              <form onSubmit={verifyUserHandler}>
+              <form className="form-inputs" onSubmit={verifyUserHandler}>
                 <label>
                   Username: <input id="username-field" type="text" onChange={handleTextInput}></input>
                 </label>

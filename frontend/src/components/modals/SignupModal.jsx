@@ -55,7 +55,7 @@ const SignupModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
             <div id="sign-up-close-button" className="modal-close-button-line"><span className="modal-close-button" onClick={() => setSignupModalIsOpen(false)}>X</span></div>
             <div id="sign-up-form">
               Choose your username and password below.
-              <form onSubmit={createUserHandler}>
+              <form className="form-inputs" onSubmit={createUserHandler}>
                 <label>
                   Username: <input id="username-field" type="text" onChange={handleTextInput}></input>
                 </label>
@@ -64,10 +64,12 @@ const SignupModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
                 </label>
                 <input type="submit"></input>
               </form>
-            Already a user?  <span onClick={() => {
-              setSigninModalIsOpen(true);
-              setSignupModalIsOpen(false);
-              }}>Sign In!</span>
+            </div>
+            <div id="already-a-user">
+              Already a user?  <span className="sign-in-button" onClick={() => {
+                setSigninModalIsOpen(true);
+                setSignupModalIsOpen(false);
+                }}>&nbsp;&nbsp;Sign In!</span>
             </div>
           </div>
         </div>, document.getElementById('portal')
