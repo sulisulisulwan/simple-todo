@@ -2,26 +2,14 @@ html header {
   display: grid;
   grid-template-columns: [free-space] 10% [title] 30% [signin-signup-login-logout] 60%;
 }
+html header #sign-in-button {
+  cursor: pointer;
+}
+html header #sign-up-button {
+  cursor: pointer;
+}
 html header #signin-signup-login-logout {
   text-align: right;
-}
-html .modal-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #FFF;
-  padding: 50px;
-  z-index: 1000;
-}
-html .modal-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
 }
 html main #todo-list-wrapper {
   text-align: center;
@@ -43,6 +31,28 @@ html main #todo-list-wrapper #todo-list .todo .todo-text {
   text-align: left;
 }
 html main #todo-list-wrapper #todo-list .todo .todo-is-complete {
+  text-align: right;
+}
+html .modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+html .modal-overlay {
+  position: fixed;
+  border-radius: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  padding: 50px;
+  z-index: 1000;
+}
+html .modal-close-button {
   text-align: right;
 }
 

@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import SigninModal from './components/modals/SigninModal.jsx';
 import SignupModal from './components/modals/SignupModal.jsx';
-import LogInOut from './components/LogInOut.jsx';
-import TodoList from './components/TodoList.jsx';
+import Header from './components/header/Header.jsx';
+import Main from './components/main/Main.jsx';
 
 const App = () => {
   const [username, setUsername] = useState(null);
@@ -17,27 +17,16 @@ const App = () => {
 
   return (
     <>
-      <header>
-        <div id="free-space"></div>
-        <h1>SimpleTodo!</h1>
-        <div id="signin-signup-login-logout">
-          <LogInOut
-            setSigninModalIsOpen={setSigninModalIsOpen}
-            setSignupModalIsOpen={setSignupModalIsOpen}
-            handleSignOut={handleSignOut}
-            currentUserData={currentUserData}
-          />
-        </div>
-      </header>
-      <main>
-        {currentUserData !== null ?
-          <TodoList
-            currentUserData={currentUserData}
-            setCurrentUserData={setCurrentUserData}
-          />
-          : null
-        }
-      </main>
+      <Header
+        setSigninModalIsOpen={setSigninModalIsOpen}
+        setSignupModalIsOpen={setSignupModalIsOpen}
+        handleSignOut={handleSignOut}
+        currentUserData={currentUserData}
+      />
+      <Main
+        currentUserData={currentUserData}
+        setCurrentUserData={setCurrentUserData}
+      />
       <SigninModal
         isOpen={signinModalIsOpen}
         setSigninModalIsOpen={setSigninModalIsOpen}

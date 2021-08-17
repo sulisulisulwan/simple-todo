@@ -49,7 +49,7 @@ const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
       ReactDom.createPortal(
         <div id="sign-in-modal-wrapper" className="modal-wrapper">
           <div id="sign-in-modal" className="modal-overlay">
-            <div id="sign-in-close-button"><span onClick={() => setSigninModalIsOpen(false)}>X</span></div>
+            <div id="sign-in-close-button" className="modal-close-button-line"><span className="modal-close-button" onClick={() => setSigninModalIsOpen(false)}>X</span></div>
             <div id="sign-in-form">
               New to SimpleTodo?  <span onClick={() => {
                 setSignupModalIsOpen(true)
@@ -62,7 +62,7 @@ const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
                 <label>
                   Password: <input id="password-field" type="text" onChange={handleTextInput}></input>
                 </label>
-                <input type="submit"></input>
+                <input type="submit" id="sign-in-button"></input>
               </form>
             </div>
           </div>

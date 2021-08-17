@@ -52,7 +52,7 @@ const SignupModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
       ReactDom.createPortal(
         <div id="sign-up-modal-wrapper" className="modal-wrapper">
           <div id="sign-up-modal" className="modal-overlay">
-            <div id="sign-up-close-button"><span onClick={() => setSignupModalIsOpen(false)}>X</span></div>
+            <div id="sign-up-close-button" className="modal-close-button-line"><span className="modal-close-button" onClick={() => setSignupModalIsOpen(false)}>X</span></div>
             <div id="sign-up-form">
               Choose your username and password below.
               <form onSubmit={createUserHandler}>

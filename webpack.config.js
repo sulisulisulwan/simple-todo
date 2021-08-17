@@ -1,4 +1,3 @@
-import './frontend/src/style.scss';
 
 module.exports = {
   mode: 'development',
