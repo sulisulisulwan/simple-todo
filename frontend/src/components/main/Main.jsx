@@ -1,12 +1,12 @@
 import React from 'react';
-import TodoList from './TodoList.jsx';
+import SignedInView from './SignedInView.jsx'
 import SignedOutView from './SignedOutView.jsx'
 
 const Main = ({ currentUserData, setCurrentUserData}) => {
   return (
     <main>
       {currentUserData !== null ?
-        <TodoList
+        <SignedInView
           currentUserData={currentUserData}
           setCurrentUserData={setCurrentUserData}
         />
