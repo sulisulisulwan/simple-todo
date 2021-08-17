@@ -69,7 +69,7 @@ const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
                 <label>
                   Password: <input id="password-field" type="text" onChange={handleTextInput}></input>
                 </label>
-                <input type="submit" id="submit-button" value="Sign In"></input>
+                <input type="submit" id="submit-button" value="Sign In" disabled={password.length > 0 && username.length > 0 ? false : true}></input>
               </form>
             </div>
           </div>

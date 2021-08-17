@@ -128,6 +128,11 @@ html {
   //MODALS
 
   .modal-wrapper {
+    -webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein .5s; /* Firefox < 16 */
+     -ms-animation: fadein .5s; /* Internet Explorer */
+      -o-animation: fadein .5s; /* Opera < 12.1 */
+         animation: fadein .5s;
     position: fixed;
     top: 0;
       left: 0;
@@ -138,6 +143,11 @@ html {
   }
 
   .modal-overlay {
+    -webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein .5s; /* Firefox < 16 */
+     -ms-animation: fadein .5s; /* Internet Explorer */
+      -o-animation: fadein .5s; /* Opera < 12.1 */
+         animation: fadein .5s;
     position: fixed;
     border-radius: 30px;
     top: 50%;
@@ -166,7 +176,7 @@ html {
     #password-field {
       margin-bottom: 5%;
     }
-    #submit-button {
+    #submit-button:disabled {
       margin-top: 5%;
       margin-bottom: 5%;
       height: 30px;
@@ -177,10 +187,22 @@ html {
       box-shadow: 5px 5px 5px #eee;
       text-shadow: none;
     }
+    #submit-button {
+      margin-top: 5%;
+      margin-bottom: 5%;
+      height: 30px;
+      background: #79c3ff;
+      color: #FFF;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      box-shadow: 5px 5px 5px #eee;
+      text-shadow: none;
+    }
     #submit-button:hover {
       margin-top: 5%;
       margin-bottom: 5%;
-      background: #79c3ff;
+      height: 30px;
+      background: #64b9ff;
       color: #FFF;
       border: 1px solid #eee;
       border-radius: 20px;

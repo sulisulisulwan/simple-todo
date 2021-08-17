@@ -40,7 +40,7 @@ const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
         {text}
       </td>
       <td id={`#-${todo.todoID}`} className="todo-is-complete" onClick={toggleComplete}>
-        {isComplete ? '[✓]' : '[ ]'}
+        {isComplete ? '✓' : '-'}
       </td>
     </tr>
   )
