@@ -30,14 +30,19 @@ const SigninModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
     })
     .then(result => {
       let todos = {}
+      let someTodosClearable = false;
       for (let todoID in result.data.todos) {
         todos[todoID] = result.data.todos[todoID]
+        if (result.data.todos[todoID].isComplete) {
+          someTodosClearable = true;
+        }
       }
       setSigninModalIsOpen(false);
       setCurrentUserData({
         userID: result.data.userID,
         username: username,
-        todos: todos
+        todos: todos,
+        someTodosClearable: someTodosClearable
       })
     })
     .catch(err => {

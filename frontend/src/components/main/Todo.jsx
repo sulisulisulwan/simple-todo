@@ -11,9 +11,16 @@ const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
     let newData = {
       userID: currentUserData.userID,
       username: currentUserData.username,
-      todos: currentUserData.todos
+      todos: currentUserData.todos,
+      someTodosClearable: false
     }
     newData.todos[todoID].isComplete = !newData.todos[todoID].isComplete
+    for (let todo in newData.todos) {
+      if (newData.todos[todo].isComplete) {
+        newData.someTodosClearable = true;
+        break;
+      }
+    }
     setCurrentUserData(newData)
 
     axios.put('/todos', {
@@ -33,7 +40,7 @@ const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
         {text}
       </td>
       <td id={`#-${todo.todoID}`} className="todo-is-complete" onClick={toggleComplete}>
-        {isComplete ? '[X]' : '[ ]'}
+        {isComplete ? '[✓]' : '[ ]'}
       </td>
     </tr>
   )

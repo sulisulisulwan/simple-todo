@@ -46,10 +46,12 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
     newData.userID = currentUserData.userID
     newData.username = currentUserData.username
     newData.todos = currentUserData.todos
+    newData.someTodosClearable = false;
     for (let todo in newData.todos) {
       if (newData.todos[todo].isComplete) {
         delete newData.todos[todo]
       }
+
     }
     setCurrentUserData(newData);
     axios.delete('/todos', { data: { userID: currentUserData.userID} })
@@ -64,10 +66,11 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
       <form id="todo-list-actions" onSubmit={handleCreateTodo}>
         <label id="add-todo-input-text-label">
           Write a Todo:
-          <input id="add-todo-input-text" type="text" onChange={handleTodoInputChange}></input>
+          <input id="add-todo-input-text" type="text" placeholder="Write Todo here" onChange={handleTodoInputChange}></input>
         </label>
-        <input id="add-todo-input-submit" type="submit" value="Add Todo"></input>
-        <button id="clear-complete-button" type="button" onClick={handleClearComplete}>Clear Complete</button>
+
+        <input id="add-todo-input-submit" type="submit" value="Add Todo" disabled={todoInputField.length ? false : true}></input>
+        <button id="clear-complete-button" type="button" onClick={handleClearComplete} disabled={currentUserData.someTodosClearable ? false : true}>Clear Complete</button>
       </form>
       {todos.length ?
         <table id="todo-list">

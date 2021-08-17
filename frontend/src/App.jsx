@@ -11,6 +11,7 @@ const App = () => {
   const [signupModalIsOpen, setSignupModalIsOpen] = useState(false);
   const [currentUserData, setCurrentUserData] = useState(null);
 
+
   const handleSignOut = () => {
     setCurrentUserData(null);
   }
