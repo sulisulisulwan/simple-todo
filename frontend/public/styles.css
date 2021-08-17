@@ -3,13 +3,18 @@ html {
 }
 html .sign-in-button {
   cursor: pointer;
+  font-weight: 900;
 }
 html .sign-up-button {
   cursor: pointer;
+  font-weight: 900;
 }
 html header {
   display: grid;
   grid-template-columns: [free-space] 10% [title] 30% [signin-signup-login-logout] 60%;
+}
+html header #simple-todo-title {
+  font-weight: bolder;
 }
 html header #signin-signup-login-logout {
   text-align: right;
@@ -52,7 +57,7 @@ html .modal-overlay {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #FFF;
-  padding: 50px;
+  padding: 25px;
   z-index: 1000;
 }
 html .modal-close-button-line {
@@ -62,11 +67,40 @@ html .modal-close-button-line .modal-close-button {
   cursor: pointer;
 }
 html .form-inputs {
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+html .form-inputs #username-field {
+  margin-bottom: 5%;
+}
+html .form-inputs #password-field {
+  margin-bottom: 5%;
+}
+html .form-inputs #submit-button {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  height: 30px;
+  background: #B9DFFF;
+  color: #FFF;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+}
+html .form-inputs #submit-button:hover {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background: #79c3ff;
+  color: #FFF;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+}
 html #already-a-user {
+  margin-top: 10%;
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -62,7 +62,7 @@ const SignupModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
                 <label>
                   Password: <input id="password-field" type="text" onChange={handleTextInput}></input>
                 </label>
-                <input type="submit"></input>
+                <input id="submit-button" type="submit"  value="Sign Up"></input>
               </form>
             </div>
             <div id="already-a-user">

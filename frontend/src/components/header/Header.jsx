@@ -5,7 +5,9 @@ const Header = ({ setSigninModalIsOpen, setSignupModalIsOpen, handleSignOut, cur
   return (
     <header>
       <div id="free-space"></div>
-      <h1>SimpleTodo!</h1>
+      <div id="simple-todo-title">
+        <h1>SimpleTodo!</h1>
+      </div>
       <div id="signin-signup-login-logout">
         <LogInOut
           setSigninModalIsOpen={setSigninModalIsOpen}
