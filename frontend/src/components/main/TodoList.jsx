@@ -31,10 +31,12 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
     axios.post('/todos', todo)
       .then(_=> {
         setTodoInputField('');
+        document.getElementById('add-todo-input-text').value = '';
         return axios.get(`/todos?username=${username}&userID=${userID}`)
       })
       .then(result => {
         setCurrentUserData(result.data)
+
       })
       .catch(err => {
         console.error(err)
@@ -69,8 +71,8 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
           <input id="add-todo-input-text" type="text" placeholder="Write Todo here" onChange={handleTodoInputChange}></input>
         </label>
 
-        <input id="add-todo-input-submit" type="submit" value="Add Todo" disabled={todoInputField.length ? false : true}></input>
-        <button id="clear-complete-button" type="button" onClick={handleClearComplete} disabled={currentUserData.someTodosClearable ? false : true}>Clear Complete</button>
+        <input id="add-todo-input-submit" className="add-todo-action-buttons" type="submit" value="Add Todo" disabled={todoInputField.length ? false : true}></input>
+        <button id="clear-complete-button" className="add-todo-action-buttons" type="button" onClick={handleClearComplete} disabled={currentUserData.someTodosClearable ? false : true}>Clear Complete</button>
       </form>
       {todos.length ?
         <table id="todo-list">

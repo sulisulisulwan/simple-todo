@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoList from './TodoList.jsx';
+import SignedOutView from './SignedOutView.jsx'
 
 const Main = ({ currentUserData, setCurrentUserData}) => {
   return (
@@ -9,7 +10,7 @@ const Main = ({ currentUserData, setCurrentUserData}) => {
           currentUserData={currentUserData}
           setCurrentUserData={setCurrentUserData}
         />
-        : null
+        : <SignedOutView />
       }
     </main>
   )

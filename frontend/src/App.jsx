@@ -4,6 +4,7 @@ import SigninModal from './components/modals/SigninModal.jsx';
 import SignupModal from './components/modals/SignupModal.jsx';
 import Header from './components/header/Header.jsx';
 import Main from './components/main/Main.jsx';
+import Footer from './components/footer/Footer.jsx';
 
 const App = () => {
   const [username, setUsername] = useState(null);
@@ -28,6 +29,7 @@ const App = () => {
         currentUserData={currentUserData}
         setCurrentUserData={setCurrentUserData}
       />
+      <Footer/>
       <SigninModal
         isOpen={signinModalIsOpen}
         setSigninModalIsOpen={setSigninModalIsOpen}
