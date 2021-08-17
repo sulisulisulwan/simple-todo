@@ -66,7 +66,7 @@ const SignupModal = ( {isOpen, setSigninModalIsOpen, setSignupModalIsOpen, setCu
               </form>
             </div>
             <div id="already-a-user">
-              Already a user?  <span className="sign-in-button" onClick={() => {
+              Already a user?  <span className="log-in-log-out-button" onClick={() => {
                 setSigninModalIsOpen(true);
                 setSignupModalIsOpen(false);
                 }}>&nbsp;&nbsp;Sign In!</span>

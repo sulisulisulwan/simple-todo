@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoList from './TodoList.jsx';
 
-const Main = ({ currentUserData }) => {
+const Main = ({ currentUserData, setCurrentUserData}) => {
   return (
     <main>
       {currentUserData !== null ?
