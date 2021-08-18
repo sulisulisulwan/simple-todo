@@ -79,7 +79,7 @@ const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
   return (
     <tr className="todo">
       <td className="todo-text" onClick={clickEditTextField}>
-        {isEditingText ? <input id={`edit-${todo.todoID}`} type="text" value={todoEditedText} onChange={handleEditTextFieldOnChange} onKeyPress={listenForEnter}></input> : text}
+        {isEditingText ? <input className="add-todo-input-text" id={`edit-${todo.todoID}`} type="text" value={todoEditedText} onChange={handleEditTextFieldOnChange} onKeyPress={listenForEnter}></input> : text}
       </td>
       <td id={`#-${todo.todoID}`} className="todo-is-complete" onClick={toggleComplete}>
         {isComplete ? '✓' : '-'}

@@ -48,22 +48,21 @@ html {
         #nothing-to-do {
           margin-top: 20px;
         }
-        #add-todo-input-text-label {
-          #add-todo-input-text {
-            padding-top: 5px;
-            margin-left: 1%;
-            margin-right: 1%;
-            border: 0;
-            font-size: 20px;
-            font-family: 'Josefin Sans', sans-serif;
-          }
-          #add-todo-input-text:focus {
-            margin-left: 1%;
-            margin-right: 1%;
-            outline: none;
-            font-family: 'Josefin Sans', sans-serif;
-          }
+        .add-todo-input-text {
+          padding-top: 5px;
+          margin-left: 1%;
+          margin-right: 1%;
+          border: 0;
+          font-size: 20px;
+          font-family: 'Josefin Sans', sans-serif;
         }
+        .add-todo-input-text:focus {
+          margin-left: 1%;
+          margin-right: 1%;
+          outline: none;
+          font-family: 'Josefin Sans', sans-serif;
+        }
+
         .add-todo-action-buttons {
           font-family: 'Josefin Sans', sans-serif;
           height: 20px;
@@ -94,7 +93,6 @@ html {
             display: grid;
             overflow-wrap: break-word;
             grid-template-columns: [todo-text] 250px [todo-is-complete] 30px;
-
             .todo-text {
               text-align: left;
 

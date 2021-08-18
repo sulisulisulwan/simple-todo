@@ -68,7 +68,7 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
       <form id="todo-list-actions" onSubmit={handleCreateTodo}>
         <label id="add-todo-input-text-label">
           Write a Todo:
-          <input id="add-todo-input-text" type="text" placeholder="Write Todo here" onChange={handleTodoInputChange}></input>
+          <input className="add-todo-input-text" type="text" placeholder="Write Todo here" onChange={handleTodoInputChange}></input>
         </label>
 
         <input id="add-todo-input-submit" className="add-todo-action-buttons" type="submit" value="Add Todo" disabled={todoInputField.length ? false : true}></input>
