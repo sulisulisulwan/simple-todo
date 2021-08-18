@@ -1,3 +1,5 @@
+//change the .js to .env
+
 MYSQL_HOST=TODO:
 MYSQL_USER=TODO:
 MYSQL_PASSWORD=TODO:
