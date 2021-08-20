@@ -29,6 +29,10 @@ html header #simple-todo-title {
 html header #signin-signup-login-logout {
   text-align: right;
 }
+html header .log-in-log-out-button:hover {
+  text-align: right;
+  color: #ff7a59;
+}
 html main {
   margin: 10% 10%;
 }
