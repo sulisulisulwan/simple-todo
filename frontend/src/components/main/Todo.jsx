@@ -10,7 +10,7 @@ const Todo = ({ todo, currentUserData, setCurrentUserData, editTodoIsActive }) =
 
 
   const listenForEnter = (e) => {
-    if (e.charCode !== 13) {
+    if (e.charCode !== 13 || todoEditedText === '') {
       return
     }
     let todoID = e.target.id.split('-')[1]
@@ -75,7 +75,6 @@ const Todo = ({ todo, currentUserData, setCurrentUserData, editTodoIsActive }) =
     }
   }
 
-  console.log('rerender')
   return (
     <tr className="todo">
       <td className="todo-text" onClick={clickEditTextField}>
