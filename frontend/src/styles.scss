@@ -95,6 +95,7 @@ html {
             grid-template-columns: [todo-text] 250px [todo-is-complete] 30px;
             .todo-text {
               text-align: left;
+              cursor: pointer;
 
             }
             .todo-is-complete {
@@ -105,7 +106,7 @@ html {
         }
       }
     }
-    }
+  }
 
   footer {
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */

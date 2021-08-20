@@ -1,15 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Todo from './Todo.jsx'
 import axios from 'axios';
 
 const TodoList = ({ currentUserData, setCurrentUserData }) => {
   let todos = [];
-  const [todoInputField, setTodoInputField] = useState('')
-
+  const [todoInputField, setTodoInputField] = useState('');
+  const editTodoIsActive = useRef(false)
   if (currentUserData !== null) {
     for (let todo in currentUserData.todos) {
-
       todos.push(currentUserData.todos[todo])
     }
   }
@@ -31,7 +30,7 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
     axios.post('/todos', todo)
       .then(_=> {
         setTodoInputField('');
-        document.getElementById('add-todo-input-text').value = '';
+        document.getElementById('add-todo-input-text-field').value = '';
         return axios.get(`/todos?username=${username}&userID=${userID}`)
       })
       .then(result => {
@@ -68,7 +67,7 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
       <form id="todo-list-actions" onSubmit={handleCreateTodo}>
         <label id="add-todo-input-text-label">
           Write a Todo:
-          <input className="add-todo-input-text" type="text" placeholder="Write Todo here" onChange={handleTodoInputChange}></input>
+          <input id="add-todo-input-text-field" className="add-todo-input-text" type="text" placeholder="Write Todo here" onChange={handleTodoInputChange}></input>
         </label>
 
         <input id="add-todo-input-submit" className="add-todo-action-buttons" type="submit" value="Add Todo" disabled={todoInputField.length ? false : true}></input>
@@ -83,6 +82,7 @@ const TodoList = ({ currentUserData, setCurrentUserData }) => {
                 todo={todo}
                 currentUserData={currentUserData}
                 setCurrentUserData={setCurrentUserData}
+                editTodoIsActive={editTodoIsActive}
               />)}
           </tbody>
         </table>

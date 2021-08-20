@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 
-const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
+const Todo = ({ todo, currentUserData, setCurrentUserData, editTodoIsActive }) => {
 
   let {text, isComplete} = todo;
   const [todoEditedText, setTodoEditedText] = useState(text);
@@ -10,11 +10,9 @@ const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
 
 
   const listenForEnter = (e) => {
-    //if they haven't typed enter, RETURN
     if (e.charCode !== 13) {
       return
     }
-    //create a copy of state
     let todoID = e.target.id.split('-')[1]
     let newData = {
       userID: currentUserData.userID,
@@ -22,17 +20,14 @@ const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
       todos: currentUserData.todos,
       someTodosClearable: currentUserData.someTodosClearable
     }
-    //edit the text of the todo in new state
     newData.todos[todoID].text = todoEditedText;
-
-    //update the database
     axios.put('/todos', {
       todoID: todoID,
       todoText: newData.todos[todoID].text
     })
       .then(_=> {
-        //update state
         setCurrentUserData(newData);
+        editTodoIsActive.current = false;
         setIsEditingText(false);
       })
       .catch(err => {
@@ -73,13 +68,18 @@ const Todo = ({ todo, currentUserData, setCurrentUserData }) => {
   }
 
   const clickEditTextField = () => {
-    setIsEditingText(true)
+    console.log(editTodoIsActive)
+    if (!editTodoIsActive.current) {
+      setIsEditingText(true)
+      editTodoIsActive.current = true;
+    }
   }
 
+  console.log('rerender')
   return (
     <tr className="todo">
       <td className="todo-text" onClick={clickEditTextField}>
-        {isEditingText ? <input className="add-todo-input-text" id={`edit-${todo.todoID}`} type="text" value={todoEditedText} onChange={handleEditTextFieldOnChange} onKeyPress={listenForEnter}></input> : text}
+        {isEditingText ? <input autoFocus={true} className="add-todo-input-text" id={`edit-${todo.todoID}`} type="text" value={todoEditedText} onChange={handleEditTextFieldOnChange} onKeyPress={listenForEnter}></input> : text}
       </td>
       <td id={`#-${todo.todoID}`} className="todo-is-complete" onClick={toggleComplete}>
         {isComplete ? '✓' : '-'}

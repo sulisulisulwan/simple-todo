@@ -111,6 +111,7 @@ html main #signed-in-view #todo-list-wrapper #todo-list .todo {
 }
 html main #signed-in-view #todo-list-wrapper #todo-list .todo .todo-text {
   text-align: left;
+  cursor: pointer;
 }
 html main #signed-in-view #todo-list-wrapper #todo-list .todo .todo-is-complete {
   cursor: pointer;
