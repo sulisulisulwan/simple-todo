@@ -104,9 +104,14 @@ html {
               cursor: pointer;
 
             }
-            .add-todo-input-text {
+            .edit-todo-input-text {
+              font-family: 'Josefin Sans', sans-serif;
               line-height: 10px;
               font-size: 16px;
+              outline: none;
+              border-radius: 20px;
+              border: solid white 0px;
+              background: #B9DFFF;
             }
             .todo-is-complete {
               cursor: pointer;
